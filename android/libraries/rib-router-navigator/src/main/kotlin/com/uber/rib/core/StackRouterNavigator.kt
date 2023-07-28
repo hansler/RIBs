@@ -296,7 +296,7 @@ constructor(
     var found = false
     var navigationIterator = navigationStack.iterator()
     while (navigationIterator.hasNext()) {
-      if (navigationIterator.next().state == newState) {
+      if (navigationIterator.next().state.stateName() == newState.stateName()) {
         found = true
         break
       }
@@ -305,7 +305,7 @@ constructor(
       navigationIterator = navigationStack.iterator()
       while (navigationIterator.hasNext()) {
         val routerAndState = navigationIterator.next()
-        if (routerAndState.state == newState) {
+        if (routerAndState.state.stateName() == newState.stateName()) {
           attachInternal(currentRouterAndState, routerAndState, true)
           break
         } else {
@@ -329,7 +329,7 @@ constructor(
     val navigationIterator = navigationStack.iterator()
     while (navigationIterator.hasNext()) {
       val routerAndState = navigationIterator.next()
-      if (routerAndState.state == newState) {
+      if (routerAndState.state.stateName() == newState.stateName()) {
         navigationIterator.remove()
         navigationStack.push(routerAndState)
         attachInternal(currentRouterAndState, routerAndState, true)
